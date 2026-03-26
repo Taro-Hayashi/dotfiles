@@ -18,16 +18,31 @@ install_formula wget
 
 # ── Apps & Fonts ──────────────────────────────────────────
 install_cask() {
+  # Remove any existing app not managed by Homebrew (web-installed)
+  local app_names
+  app_names=$(brew info --cask --json=v2 "$1" 2>/dev/null \
+    | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+for cask in data.get('casks', []):
+    for artifact in cask.get('artifacts', []):
+        if isinstance(artifact, dict) and 'app' in artifact:
+            for item in artifact['app']:
+                if isinstance(item, str):
+                    print(item)
+" 2>/dev/null)
+  for app_name in $app_names; do
+    for dir in "/Applications" "$HOME/Applications"; do
+      if [ -d "$dir/$app_name" ]; then
+        echo "Removing existing $dir/$app_name before install..."
+        rm -rf "$dir/$app_name"
+      fi
+    done
+  done
+
   if brew info --cask "$1" 2>/dev/null | grep -q "Installed"; then
     echo "Already installed: $1 (skipped)"
   else
-    # Remove any existing app not managed by Homebrew
-    local app_name
-    app_name=$(brew info --cask "$1" 2>/dev/null | grep -o '[A-Za-z][A-Za-z0-9 ]*\.app' | head -1)
-    if [ -n "$app_name" ] && [ -d "/Applications/$app_name" ]; then
-      echo "Removing existing /Applications/$app_name before install..."
-      rm -rf "/Applications/$app_name"
-    fi
     brew install --cask "$1"
   fi
 }
