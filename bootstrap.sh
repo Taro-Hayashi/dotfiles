@@ -21,6 +21,8 @@ GITHUB_DIR="$(pwd)/GitHub"
 mkdir -p "$GITHUB_DIR"
 if [ ! -d "$GITHUB_DIR/dotfiles" ]; then
   git clone https://github.com/Taro-Hayashi/dotfiles.git "$GITHUB_DIR/dotfiles"
+else
+  git -C "$GITHUB_DIR/dotfiles" pull
 fi
 
 # ── Setup ─────────────────────────────────────────────────
