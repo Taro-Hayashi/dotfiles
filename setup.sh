@@ -18,13 +18,6 @@ install_formula wget
 
 # ── Apps & Fonts ──────────────────────────────────────────
 install_cask() {
-  # Skip if already managed by Homebrew
-  if brew list --cask "$1" &>/dev/null; then
-    echo "Already installed: $1 (skipped)"
-    return
-  fi
-
-  # Remove any existing app/suite not managed by Homebrew (web-installed)
   local artifacts
   artifacts=$(brew info --cask --json=v2 "$1" 2>/dev/null \
     | python3 -c "
@@ -39,12 +32,32 @@ for cask in data.get('casks', []):
                         if isinstance(item, str):
                             print(item)
 " 2>/dev/null)
+
+  # If Homebrew manages this cask, check the app actually exists on disk
+  if brew list --cask "$1" &>/dev/null; then
+    local app_exists=false
+    while IFS= read -r artifact; do
+      [ -z "$artifact" ] && continue
+      for dir in "/Applications" "$HOME/Applications"; do
+        [ -e "$dir/$artifact" ] && app_exists=true && break 2
+      done
+    done <<< "$artifacts"
+    if $app_exists; then
+      echo "Already installed: $1 (skipped)"
+      return
+    fi
+    echo "App missing, reinstalling: $1"
+    brew reinstall --cask "$1"
+    return
+  fi
+
+  # Remove any existing app/suite not managed by Homebrew (web/MAS-installed)
   while IFS= read -r artifact; do
     [ -z "$artifact" ] && continue
     for dir in "/Applications" "$HOME/Applications"; do
       if [ -e "$dir/$artifact" ]; then
         echo "Removing existing $dir/$artifact before install..."
-        rm -rf "$dir/$artifact"
+        sudo rm -rf "$dir/$artifact"
       fi
     done
   done <<< "$artifacts"
