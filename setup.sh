@@ -21,6 +21,13 @@ install_cask() {
   if brew info --cask "$1" 2>/dev/null | grep -q "Installed"; then
     echo "Already installed: $1 (skipped)"
   else
+    # Remove any existing app not managed by Homebrew
+    local app_name
+    app_name=$(brew info --cask "$1" 2>/dev/null | grep -o '[A-Za-z][A-Za-z0-9 ]*\.app' | head -1)
+    if [ -n "$app_name" ] && [ -d "/Applications/$app_name" ]; then
+      echo "Removing existing /Applications/$app_name before install..."
+      rm -rf "/Applications/$app_name"
+    fi
     brew install --cask "$1"
   fi
 }
