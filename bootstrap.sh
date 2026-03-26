@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+# ── Homebrew ──────────────────────────────────────────────
+if ! command -v brew &>/dev/null; then
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# ── GitHub CLI ────────────────────────────────────────────
+if ! brew info --formula gh 2>/dev/null | grep -q "Installed"; then
+  brew install gh
+fi
+if ! gh auth status &>/dev/null; then
+  gh auth login
+fi
+
+# ── Clone dotfiles ────────────────────────────────────────
+GITHUB_DIR="$(pwd)/GitHub"
+mkdir -p "$GITHUB_DIR"
+if [ ! -d "$GITHUB_DIR/dotfiles" ]; then
+  git clone https://github.com/Taro-Hayashi/dotfiles.git "$GITHUB_DIR/dotfiles"
+fi
+
+# ── Setup ─────────────────────────────────────────────────
+"$GITHUB_DIR/dotfiles/setup.sh"

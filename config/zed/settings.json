@@ -1,0 +1,118 @@
+{
+    // ── Appearance ────────────────────────────────────────────
+    "theme": "Dark Transparent",
+    "experimental.theme_overrides": {
+        "background.appearance": "transparent",
+    },
+    "ui_font_size": 15,
+    "buffer_font_size": 13,
+
+    // ── Editor ────────────────────────────────────────────────
+    "autosave": "on_focus_change",
+    "tab_size": 4,
+    "soft_wrap": "editor_width",
+    "edit_predictions": {
+        "provider": "none",
+    },
+
+    // ── AI ────────────────────────────────────────────────────
+    "disable_ai": true,
+    "agent": {
+        "default_model": {
+            "effort": "high",
+            "provider": "copilot_chat",
+            "model": "gpt-5-mini",
+            "enable_thinking": false,
+        },
+        "button": false,
+        "favorite_models": [],
+        "model_parameters": [],
+    },
+
+    // ── Panels ────────────────────────────────────────────────
+    "project_panel": {
+        "hide_hidden": false,
+        "hide_root": false,
+        "diagnostic_badges": false,
+        "bold_folder_labels": true,
+        "folder_icons": true,
+        "file_icons": true,
+        "default_width": 240.0,
+        "hide_gitignore": false,
+        "dock": "left",
+        "button": true,
+    },
+    "outline_panel": {
+        "dock": "right",
+        "button": true,
+    },
+    "terminal": {
+        "dock": "right",
+        "button": false,
+    },
+    "collaboration_panel": {
+        "button": false,
+    },
+    "notification_panel": {
+        "button": false,
+    },
+    "git_panel": {
+        "button": false,
+    },
+    "debugger": {
+        "button": false,
+    },
+    "search": {
+        "button": true,
+    },
+    "diagnostics": {
+        "button": false,
+    },
+
+    // ── Tabs & Bars ───────────────────────────────────────────
+    "tab_bar": {
+        "show_pinned_tabs_in_separate_row": false,
+        "show_tab_bar_buttons": false,
+        "show_nav_history_buttons": false,
+        "show": true,
+    },
+    "tabs": {
+        "show_close_button": "always",
+    },
+    "preview_tabs": {
+        "enable_preview_from_project_panel": true,
+        "enabled": true,
+    },
+    "title_bar": {
+        "show_menus": false,
+        "show_sign_in": true,
+        "show_onboarding_banner": true,
+        "show_project_items": false,
+        "show_branch_name": true,
+    },
+    "status_bar": {
+        "cursor_position_button": true,
+        "active_language_button": true,
+    },
+
+    // ── Window & Session ──────────────────────────────────────
+    "use_system_window_tabs": false,
+    "pane_split_direction_vertical": "right",
+    "zoomed_padding": true,
+    "active_pane_modifiers": {
+        "border_size": 1.0,
+        "inactive_opacity": 1.0,
+    },
+    "restore_on_startup": "empty_tab",
+    "session": {
+        "trust_all_worktrees": true,
+    },
+    "on_last_window_closed": "quit_app",
+    "when_closing_with_no_tabs": "keep_window_open",
+
+    // ── Telemetry ─────────────────────────────────────────────
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false,
+    },
+}

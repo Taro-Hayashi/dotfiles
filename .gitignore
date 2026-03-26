@@ -1,0 +1,16 @@
+# Claude Code
+CLAUDE.md
+
+# macOS
+.DS_Store
+
+# Zed - ユーザーデータ (設定以外)
+config/zed/conversations/
+config/zed/embeddings/
+config/zed/prompts/
+config/zed/colorsample
+config/zed/CLAUDE.md
+
+# 機密情報
+*.env
+.env.*

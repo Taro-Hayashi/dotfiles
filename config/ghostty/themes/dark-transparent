@@ -1,0 +1,28 @@
+# Dark Transparent - ported from Zed theme by hayashi
+
+background = #141e32
+foreground = #dadada
+
+cursor-color = #74ade8
+selection-background = #253b63
+selection-foreground = #dce0e5
+
+# Normal (0-7)
+palette = 0=#1a2850
+palette = 1=#e8838b
+palette = 2=#a8d08a
+palette = 3=#edcc8e
+palette = 4=#aacfff
+palette = 5=#d28ee5
+palette = 6=#6ac4cf
+palette = 7=#9db0c5
+
+# Bright (8-15)
+palette = 8=#6dba96
+palette = 9=#eeaed3
+palette = 10=#b2ecac
+palette = 11=#ffe09e
+palette = 12=#9bceff
+palette = 13=#dbaaf0
+palette = 14=#82dde6
+palette = 15=#fafafa
