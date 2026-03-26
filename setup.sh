@@ -18,33 +18,37 @@ install_formula wget
 
 # ── Apps & Fonts ──────────────────────────────────────────
 install_cask() {
-  # Remove any existing app not managed by Homebrew (web-installed)
-  local app_names
-  app_names=$(brew info --cask --json=v2 "$1" 2>/dev/null \
+  # Skip if already managed by Homebrew
+  if brew list --cask "$1" &>/dev/null; then
+    echo "Already installed: $1 (skipped)"
+    return
+  fi
+
+  # Remove any existing app/suite not managed by Homebrew (web-installed)
+  local artifacts
+  artifacts=$(brew info --cask --json=v2 "$1" 2>/dev/null \
     | python3 -c "
 import sys, json
 data = json.load(sys.stdin)
 for cask in data.get('casks', []):
     for artifact in cask.get('artifacts', []):
-        if isinstance(artifact, dict) and 'app' in artifact:
-            for item in artifact['app']:
-                if isinstance(item, str):
-                    print(item)
+        if isinstance(artifact, dict):
+            for key in ('app', 'suite'):
+                if key in artifact:
+                    for item in artifact[key]:
+                        if isinstance(item, str):
+                            print(item)
 " 2>/dev/null)
-  for app_name in $app_names; do
+  for artifact in $artifacts; do
     for dir in "/Applications" "$HOME/Applications"; do
-      if [ -d "$dir/$app_name" ]; then
-        echo "Removing existing $dir/$app_name before install..."
-        rm -rf "$dir/$app_name"
+      if [ -e "$dir/$artifact" ]; then
+        echo "Removing existing $dir/$artifact before install..."
+        rm -rf "$dir/$artifact"
       fi
     done
   done
 
-  if brew info --cask "$1" 2>/dev/null | grep -q "Installed"; then
-    echo "Already installed: $1 (skipped)"
-  else
-    brew install --cask "$1"
-  fi
+  brew install --cask "$1"
 }
 
 install_cask ghostty
