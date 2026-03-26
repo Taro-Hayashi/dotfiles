@@ -82,8 +82,8 @@ install_cask xnviewmp
 install_cask syncthing
 
 # ── Claude Code CLI ───────────────────────────────────────
-if command -v claude &>/dev/null; then
-  echo "Already installed: claude (skipped)"
+if npm list -g @anthropic-ai/claude-code &>/dev/null; then
+  echo "Already installed: @anthropic-ai/claude-code (skipped)"
 else
   npm install -g @anthropic-ai/claude-code
 fi
