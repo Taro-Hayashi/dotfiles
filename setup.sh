@@ -14,6 +14,7 @@ install_formula() {
 
 install_formula gh
 install_formula git
+install_formula node
 install_formula wget
 
 # ── Apps & Fonts ──────────────────────────────────────────
@@ -79,6 +80,13 @@ install_cask steam
 install_cask the-unarchiver
 install_cask xnviewmp
 install_cask syncthing
+
+# ── Claude Code CLI ───────────────────────────────────────
+if command -v claude &>/dev/null; then
+  echo "Already installed: claude (skipped)"
+else
+  npm install -g @anthropic-ai/claude-code
+fi
 
 # ── Symlinks: ~/.config ───────────────────────────────────
 mkdir -p ~/.config
