@@ -39,14 +39,15 @@ for cask in data.get('casks', []):
                         if isinstance(item, str):
                             print(item)
 " 2>/dev/null)
-  for artifact in $artifacts; do
+  while IFS= read -r artifact; do
+    [ -z "$artifact" ] && continue
     for dir in "/Applications" "$HOME/Applications"; do
       if [ -e "$dir/$artifact" ]; then
         echo "Removing existing $dir/$artifact before install..."
         rm -rf "$dir/$artifact"
       fi
     done
-  done
+  done <<< "$artifacts"
 
   brew install --cask "$1"
 }
