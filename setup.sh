@@ -73,7 +73,7 @@ install_cask font-zen-maru-gothic
 install_cask kicad
 install_cask bambu-studio
 install_cask betterdisplay
-install_cask arc
+install_cask zen-browser
 install_cask brave-browser
 install_cask claude
 install_cask github
