@@ -103,14 +103,6 @@ link_config() {
 link_config ghostty
 link_config zed
 
-# ── Symlinks: ~/.xnviewmp ─────────────────────────────────
-mkdir -p ~/.xnviewmp
-for f in "$DOTFILES/config/xnviewmp"/*; do
-  name="$(basename "$f")"
-  ln -sf "$f" ~/.xnviewmp/"$name"
-  echo "Linked: ~/.xnviewmp/$name -> $f"
-done
-
 # ── Symlinks: home ────────────────────────────────────────
 link_home() {
   local src="$DOTFILES/home/$1"
