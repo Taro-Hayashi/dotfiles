@@ -11,3 +11,6 @@ config/zed/CLAUDE.md
 # 機密情報
 *.env
 .env.*
+
+# Immich の .env は管理対象
+!services/immich/.env
