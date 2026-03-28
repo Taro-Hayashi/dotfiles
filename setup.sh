@@ -70,18 +70,13 @@ install_cask ghostty
 install_cask zed
 install_cask font-zed-mono
 install_cask font-zen-maru-gothic
-install_cask kicad
-install_cask bambu-studio
 install_cask betterdisplay
 install_cask zen-browser
 install_cask brave-browser
 install_cask claude
 install_cask github
-install_cask steam
 install_cask the-unarchiver
-install_cask xnviewmp
 install_cask syncthing
-install_cask jellyfin-media-player
 
 # ── Claude Code CLI ───────────────────────────────────────
 if npm list -g --depth=0 2>/dev/null | grep -q "@anthropic-ai/claude-code"; then
@@ -143,5 +138,35 @@ echo "以下のアプリはHomebrew非対応のため手動でインストール
 echo "  - Affinity (Designer / Photo / Publisher)  https://affinity.serif.com"
 echo "  - GestureDrawing!                          https://cubebrush.co/advanches/products/d9q6yq/gesturedrawing"
 echo "  - Plasticity                               https://plasticity.xyz"
+# ── Docker ───────────────────────────────────────────────
+if ! command -v docker &>/dev/null; then
+  curl -fsSL https://get.docker.com | sh
+  sudo usermod -aG docker "$USER"
+  echo "Docker installed. Re-login required to use without sudo."
+else
+  echo "Already installed: docker (skipped)"
+fi
+
+# ── Server Services ───────────────────────────────────────
+start_service() {
+  local name="$1"
+  local dir="$DOTFILES/services/$name"
+  echo "Starting $name..."
+  sudo docker compose -f "$dir/compose.yml" -p "$name" up -d
+}
+
+start_service paperless-ngx
+start_service pihole
+start_service uptime-kuma
+start_service freshrss
+start_service jellyfin
+
+echo ""
+echo "サービスのポート一覧:"
+echo "  paperless-ngx  http://localhost:8000"
+echo "  pihole         http://localhost:8080/admin"
+echo "  uptime-kuma    http://localhost:3001"
+echo "  freshrss       http://localhost:8001"
+echo "  jellyfin       http://localhost:8096"
 echo ""
 echo "Done! Open a new terminal to apply shell settings."
