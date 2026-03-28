@@ -46,7 +46,7 @@ services:
       -c logging_collector=on
       -c max_wal_size=2GB
       -c shared_buffers=512MB
-      -c wal_compression=lz4
+      -c wal_compression=on
 
 volumes:
   model-cache:
