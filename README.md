@@ -31,6 +31,8 @@ Debian/Ubuntu サーバー向けセットアップ。
 | [Uptime Kuma](https://github.com/louislam/uptime-kuma) | 3001 | 死活監視 |
 | [FreshRSS](https://freshrss.org/) | 8001 | RSS リーダー |
 | [Jellyfin](https://jellyfin.org/) | 8096 | メディアサーバー |
+| [Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) | 8085 | PDF 編集ツール |
+| [Homarr](https://homarr.dev/) | 7575 | サービスダッシュボード |
 
 ## セットアップ後の設定
 
@@ -57,7 +59,9 @@ dotfiles/
 │   ├── pihole/
 │   ├── uptime-kuma/
 │   ├── freshrss/
-│   └── jellyfin/
+│   ├── jellyfin/
+│   ├── stirling-pdf/
+│   └── homarr/
 ├── bootstrap.sh            — 初回セットアップ (git・gh 導入 → clone → setup 実行)
 └── setup.sh                — パッケージインストール・サービス起動
 ```

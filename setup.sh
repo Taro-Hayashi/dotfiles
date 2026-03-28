@@ -160,6 +160,8 @@ start_service pihole
 start_service uptime-kuma
 start_service freshrss
 start_service jellyfin
+start_service stirling-pdf
+start_service homarr
 
 echo ""
 echo "サービスのポート一覧:"
@@ -168,5 +170,7 @@ echo "  pihole         http://localhost:8080/admin"
 echo "  uptime-kuma    http://localhost:3001"
 echo "  freshrss       http://localhost:8001"
 echo "  jellyfin       http://localhost:8096"
+echo "  stirling-pdf   http://localhost:8085"
+echo "  homarr         http://localhost:7575"
 echo ""
 echo "Done! Open a new terminal to apply shell settings."
