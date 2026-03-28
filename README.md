@@ -3,7 +3,7 @@
 Debian/Ubuntu サーバー向けセットアップ。
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Taro-Hayashi/dotfiles/server/bootstrap.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Taro-Hayashi/dotfiles/server/bootstrap-server.sh)"
 ```
 
 ## インストールされるもの
@@ -69,6 +69,6 @@ dotfiles/
 │   ├── immich/
 │   ├── stirling-pdf/
 │   └── homarr/
-├── bootstrap.sh            — 初回セットアップ (git・gh 導入 → clone → setup 実行)
+├── bootstrap-server.sh     — 初回セットアップ (git・gh 導入 → clone → setup 実行)
 └── setup.sh                — パッケージインストール・サービス起動
 ```
