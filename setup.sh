@@ -140,9 +140,14 @@ echo "  - GestureDrawing!                          https://cubebrush.co/advanche
 echo "  - Plasticity                               https://plasticity.xyz"
 # ── Docker ───────────────────────────────────────────────
 if ! command -v docker &>/dev/null; then
-  curl -fsSL https://get.docker.com | sh
-  sudo usermod -aG docker "$USER"
-  echo "Docker installed. Re-login required to use without sudo."
+  if [[ "$(uname)" == "Darwin" ]]; then
+    brew install --cask docker
+    echo "Docker Desktop installed. Please launch Docker Desktop before continuing."
+  else
+    curl -fsSL https://get.docker.com | sh
+    sudo usermod -aG docker "$USER"
+    echo "Docker installed. Re-login required to use without sudo."
+  fi
 else
   echo "Already installed: docker (skipped)"
 fi
