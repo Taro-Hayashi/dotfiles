@@ -31,6 +31,7 @@ Debian/Ubuntu サーバー向けセットアップ。
 | [Uptime Kuma](https://github.com/louislam/uptime-kuma) | 3001 | 死活監視 |
 | [FreshRSS](https://freshrss.org/) | 8001 | RSS リーダー |
 | [Jellyfin](https://jellyfin.org/) | 8096 | メディアサーバー |
+| [Immich](https://immich.app/) | 2283 | 写真・動画バックアップ |
 | [Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) | 8085 | PDF 編集ツール |
 | [Homarr](https://homarr.dev/) | 7575 | サービスダッシュボード |
 
@@ -39,6 +40,11 @@ Debian/Ubuntu サーバー向けセットアップ。
 **Jellyfin** — `services/jellyfin/compose.yml` のメディアパスを変更する:
 ```yaml
 - /media:/media:ro  # 実際のパスに変更
+```
+
+**Immich** — `services/immich/.env` の写真保存先パスを変更する:
+```
+UPLOAD_LOCATION=/var/lib/immich/upload  # 実際のパスに変更
 ```
 
 **Pi-hole** — `services/pihole/compose.yml` の管理パスワードを設定する:
@@ -60,6 +66,7 @@ dotfiles/
 │   ├── uptime-kuma/
 │   ├── freshrss/
 │   ├── jellyfin/
+│   ├── immich/
 │   ├── stirling-pdf/
 │   └── homarr/
 ├── bootstrap.sh            — 初回セットアップ (git・gh 導入 → clone → setup 実行)

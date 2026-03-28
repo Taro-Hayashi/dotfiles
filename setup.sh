@@ -162,6 +162,7 @@ start_service freshrss
 start_service jellyfin
 start_service stirling-pdf
 start_service homarr
+start_service immich
 
 echo ""
 echo "サービスのポート一覧:"
@@ -172,5 +173,6 @@ echo "  freshrss       http://localhost:8001"
 echo "  jellyfin       http://localhost:8096"
 echo "  stirling-pdf   http://localhost:8085"
 echo "  homarr         http://localhost:7575"
+echo "  immich         http://localhost:2283"
 echo ""
 echo "Done! Open a new terminal to apply shell settings."
