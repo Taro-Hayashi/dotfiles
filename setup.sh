@@ -133,11 +133,6 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 killall Dock
 killall Finder
 
-echo ""
-echo "以下のアプリはHomebrew非対応のため手動でインストールしてください:"
-echo "  - Affinity (Designer / Photo / Publisher)  https://affinity.serif.com"
-echo "  - GestureDrawing!                          https://cubebrush.co/advanches/products/d9q6yq/gesturedrawing"
-echo "  - Plasticity                               https://plasticity.xyz"
 # ── Docker ───────────────────────────────────────────────
 if ! command -v docker &>/dev/null; then
   if [[ "$(uname)" == "Darwin" ]]; then
@@ -157,7 +152,11 @@ start_service() {
   local name="$1"
   local dir="$DOTFILES/services/$name"
   echo "Starting $name..."
-  sudo docker compose -f "$dir/compose.yml" -p "$name" up -d
+  if [[ "$(uname)" == "Darwin" ]]; then
+    docker compose -f "$dir/compose.yml" -p "$name" up -d
+  else
+    sudo docker compose -f "$dir/compose.yml" -p "$name" up -d
+  fi
 }
 
 start_service paperless-ngx
