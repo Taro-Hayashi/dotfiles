@@ -81,6 +81,7 @@ install_cask steam
 install_cask the-unarchiver
 install_cask xnviewmp
 install_cask syncthing
+install_cask jellyfin-media-player
 
 # ── Claude Code CLI ───────────────────────────────────────
 if npm list -g --depth=0 2>/dev/null | grep -q "@anthropic-ai/claude-code"; then
