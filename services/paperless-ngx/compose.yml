@@ -35,6 +35,7 @@ services:
       PAPERLESS_DBPASS: paperless
       PAPERLESS_TIME_ZONE: Asia/Tokyo
       PAPERLESS_OCR_LANGUAGE: jpn+eng
+      PAPERLESS_OCR_LANGUAGES: jpn eng
 
 volumes:
   data:

@@ -7,3 +7,9 @@ function cghr() { claude "/Volumes/Primary/GitHub/${1}"; }
 function home() { cd ~ ${1:+/"$1"}; }
 function github() { cd /Volumes/Primary/GitHub ${1:+/"$1"}; }
 function desktop() { cd ~/Desktop ${1:+/"$1"}; }
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/hayashi/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
