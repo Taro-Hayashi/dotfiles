@@ -167,6 +167,7 @@ start_service jellyfin
 start_service stirling-pdf
 start_service homarr
 start_service immich
+start_service open-webui
 
 echo ""
 echo "サービスのポート一覧:"
@@ -178,5 +179,6 @@ echo "  jellyfin       http://localhost:8096"
 echo "  stirling-pdf   http://localhost:8085"
 echo "  homarr         http://localhost:7575"
 echo "  immich         http://localhost:2283"
+echo "  open-webui     http://localhost:3000"
 echo ""
 echo "Done! Open a new terminal to apply shell settings."
