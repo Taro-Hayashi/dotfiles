@@ -22,7 +22,8 @@ mkdir -p "$GITHUB_DIR"
 if [ ! -d "$GITHUB_DIR/dotfiles" ]; then
   git clone -b server https://github.com/Taro-Hayashi/dotfiles.git "$GITHUB_DIR/dotfiles"
 else
-  git -C "$GITHUB_DIR/dotfiles" pull
+  git -C "$GITHUB_DIR/dotfiles" checkout server
+  git -C "$GITHUB_DIR/dotfiles" pull origin server
 fi
 
 # ── Setup ─────────────────────────────────────────────────

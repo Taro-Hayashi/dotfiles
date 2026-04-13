@@ -1,6 +1,6 @@
 services:
   openclaw-gateway:
-    image: openclawai/openclaw:latest
+    image: alpine/openclaw:latest
     restart: unless-stopped
     ports:
       - "18789:18789"
