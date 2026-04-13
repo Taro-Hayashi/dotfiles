@@ -1,11 +1,13 @@
 services:
-  uptime-kuma:
-    image: louislam/uptime-kuma:latest
-    restart: unless-stopped
-    ports:
-      - "3001:3001"
-    volumes:
-      - data:/app/data
+    uptime-kuma:
+        image: louislam/uptime-kuma:latest
+        restart: unless-stopped
+        ports:
+            - "3001:3001"
+        volumes:
+            - data:/app/data
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
 
 volumes:
-  data:
+    data:
