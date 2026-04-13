@@ -1,7 +1,14 @@
 services:
+  init-permissions:
+    image: alpine:latest
+    volumes:
+      - config:/home/node/.openclaw
+      - workspace:/home/node/.openclaw/workspace
+    command: chown -R 1000:1000 /home/node/.openclaw
+    restart: "no"
+
   openclaw-gateway:
     image: alpine/openclaw:latest
-    user: "1000:1000"
     restart: unless-stopped
     ports:
       - "18789:18789"
@@ -13,6 +20,9 @@ services:
       - TZ=Asia/Tokyo
       - OLLAMA_BASE_URL=http://Windows.local:11434/v1
       - OLLAMA_API_KEY=ollama-local
+    depends_on:
+      init-permissions:
+        condition: service_completed_successfully
 
 volumes:
   config:
