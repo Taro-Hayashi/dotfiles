@@ -117,8 +117,8 @@ echo "Applying macOS system settings..."
 
 # Dock
 defaults write com.apple.dock tilesize -int 56
-defaults write com.apple.dock orientation -string right
-defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock orientation -string bottom
+defaults write com.apple.dock autohide -bool false
 defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock minimize-to-application -bool true
 
