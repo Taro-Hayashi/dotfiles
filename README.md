@@ -28,7 +28,6 @@ Debian/Ubuntu サーバー向けセットアップ。
 |---|---|---|
 | [paperless-ngx](https://docs.paperless-ngx.com/) | 8000 | 書類管理 |
 | [Pi-hole](https://pi-hole.net/) | 8080 | DNS 広告ブロック |
-| [Uptime Kuma](https://github.com/louislam/uptime-kuma) | 3001 | 監視 |
 | [FreshRSS](https://freshrss.org/) | 8001 | RSS リーダー |
 | [Jellyfin](https://jellyfin.org/) | 8096 | メディアサーバー |
 | [Immich](https://immich.app/) | 2283 | 写真・動画バックアップ |
@@ -63,7 +62,6 @@ dotfiles/
 ├── services/               — Docker Compose ファイル
 │   ├── paperless-ngx/
 │   ├── pihole/
-│   ├── uptime-kuma/
 │   ├── freshrss/
 │   ├── jellyfin/
 │   ├── immich/

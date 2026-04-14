@@ -160,7 +160,6 @@ start_service() {
 }
 
 start_service paperless-ngx
-start_service uptime-kuma
 start_service jellyfin
 start_service stirling-pdf
 start_service homarr
@@ -170,7 +169,6 @@ start_service open-webui
 echo ""
 echo "サービスのポート一覧:"
 echo "  paperless-ngx  http://localhost:8000"
-echo "  uptime-kuma    http://localhost:3001"
 echo "  jellyfin       http://localhost:8096"
 echo "  stirling-pdf   http://localhost:8085"
 echo "  homarr         http://localhost:7575"
