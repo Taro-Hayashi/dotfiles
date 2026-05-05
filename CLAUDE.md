@@ -22,7 +22,8 @@ dotfiles/
 ├── home/                             — $HOMEにシンボリックリンクされるファイル
 │   ├── .zshrc
 │   ├── .zprofile
-│   └── .gitconfig
+│   ├── .gitconfig
+│   └── .ssh/config
 ├── bootstrap.sh                      — 初回セットアップ (Homebrew導入→clone→setup実行)
 └── setup.sh                          — パッケージインストール・シンボリックリンク作成・macOS設定
 ```

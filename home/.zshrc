@@ -13,3 +13,15 @@ fpath=(/Users/hayashi/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# OpenClaw Completion
+source "/Users/hayashi/.openclaw/completions/openclaw.zsh"
+
+export OLLAMA_HOST=0.0.0.0
+export OLLAMA_ORIGINS=*
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/hayashi/.lmstudio/bin"
+# End of LM Studio CLI section
+
+export OLLAMA_API_BASE="http://mac-mini-2:11434"

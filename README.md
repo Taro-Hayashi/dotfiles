@@ -12,61 +12,82 @@ Debian/Ubuntu サーバー向けセットアップ。
 
 | パッケージ | 用途 |
 |---|---|
+| aider | AI ペアプログラミング |
 | gh | GitHub CLI |
 | git | バージョン管理 |
 | node | Node.js |
+| python@3.11 | Open WebUI 用 Python |
 | wget | ファイル取得 |
-| curl | HTTP クライアント |
-| tmux | ターミナルマルチプレクサ |
-| htop | プロセスモニタ |
-| unzip | アーカイブ展開 |
 | @anthropic-ai/claude-code | Claude Code CLI |
+| codex | Codex CLI |
+
+**アプリ / フォント**
+
+| パッケージ | 用途 |
+|---|---|
+| ghostty | ターミナル |
+| zed | エディタ |
+| font-zed-mono | Ghostty / Zed 用フォント |
+| font-zen-maru-gothic | 日本語フォント |
+| betterdisplay | ディスプレイ調整 |
+| brave-browser | ブラウザ |
+| github | GitHub Desktop |
+| jellyfin | ネイティブ版メディアサーバー |
+| bambu-studio | Bambu Lab スライサー |
+| hammerspoon | macOS 自動化 |
+| tailscale-app | Tailscale GUI |
+| the-unarchiver | アーカイブ展開 |
+| syncthing | ファイル同期 |
+
+**ネイティブサービス**
+
+| サービス | ポート | 方式 |
+|---|---|---|
+| [Jellyfin](https://jellyfin.org/) | 8096 | macOS アプリ |
+| [Open WebUI](https://docs.openwebui.com/) | 8080 | Python venv + launchd |
+| [Uptime Kuma](https://github.com/louislam/uptime-kuma/wiki/%F0%9F%94%A7-How-to-Install) | 3001 | Git clone + Node.js + launchd |
 
 **セルフホストサービス (Docker)**
 
 | サービス | ポート | 用途 |
 |---|---|---|
 | [paperless-ngx](https://docs.paperless-ngx.com/) | 8000 | 書類管理 |
-| [Pi-hole](https://pi-hole.net/) | 8080 | DNS 広告ブロック |
-| [FreshRSS](https://freshrss.org/) | 8001 | RSS リーダー |
-| [Jellyfin](https://jellyfin.org/) | 8096 | メディアサーバー |
 | [Immich](https://immich.app/) | 2283 | 写真・動画バックアップ |
-| [Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) | 8085 | PDF 編集ツール |
-| [Homarr](https://homarr.dev/) | 7575 | サービスダッシュボード |
 
 ## セットアップ後の設定
-
-**Jellyfin** — `services/jellyfin/compose.yml` のメディアパスを変更する:
-```yaml
-- /media:/media:ro  # 実際のパスに変更
-```
 
 **Immich** — `services/immich/.env` の写真保存先パスを変更する:
 ```
 UPLOAD_LOCATION=/var/lib/immich/upload  # 実際のパスに変更
 ```
 
-**Pi-hole** — `services/pihole/compose.yml` の管理パスワードを設定する:
-```yaml
-WEBPASSWORD: ""  # パスワードを設定
-```
+**Open WebUI** — `~/dotfiles/.local/open-webui` に venv / data / secret key を作成し、`launchd` で起動する。
+
+**Uptime Kuma** — `~/dotfiles/apps/uptime-kuma` に clone し、`launchd` で起動する。
+
+**Tailscale** — 初回は System Settings の許可が必要な場合がある。
 
 ## フォルダ構成
 
 ```
 dotfiles/
-├── home/                   — $HOME にシンボリックリンクされるファイル
+├── home/                   — 初期値として ~/dotfiles にコピーされるホーム直下の設定
 │   ├── .zshrc
 │   ├── .zprofile
-│   └── .gitconfig
+│   ├── .gitconfig
+│   └── .ssh/config
+├── config/                 — 初期値として ~/dotfiles/.config にコピーされる設定
+│   ├── ghostty/
+│   └── zed/
+├── apps/                   — ネイティブサービスのアプリ本体や clone
+│   └── uptime-kuma/
+├── bin/                    — ネイティブサービス起動スクリプト
+├── logs/                   — ネイティブサービスのログ
 ├── services/               — Docker Compose ファイル
 │   ├── paperless-ngx/
-│   ├── pihole/
-│   ├── freshrss/
-│   ├── jellyfin/
-│   ├── immich/
-│   ├── stirling-pdf/
-│   └── homarr/
+│   └── immich/
 ├── bootstrap-server.sh     — 初回セットアップ (git・gh 導入 → clone → setup 実行)
-└── setup.sh                — パッケージインストール・サービス起動
+└── setup.sh                — パッケージインストール・~/dotfiles 初期化・サービス起動
 ```
+
+`setup.sh` は repo のファイルを直接 `$HOME` にリンクせず、まず `~/dotfiles` に初期値をコピーし、その後 `~/.zshrc` や `~/.config/ghostty` などを `~/dotfiles` 側へリンクします。すでに `~/dotfiles` に実体がある場合は上書きしません。

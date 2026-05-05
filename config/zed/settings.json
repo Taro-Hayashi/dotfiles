@@ -18,6 +18,7 @@
     // ── AI ────────────────────────────────────────────────────
     "disable_ai": true,
     "agent": {
+        "dock": "right",
         "default_model": {
             "effort": "high",
             "provider": "copilot_chat",
@@ -51,12 +52,14 @@
         "button": false,
     },
     "collaboration_panel": {
+        "dock": "left",
         "button": false,
     },
     "notification_panel": {
         "button": false,
     },
     "git_panel": {
+        "dock": "left",
         "button": false,
     },
     "debugger": {
