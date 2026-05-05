@@ -1,0 +1,4 @@
+model: ollama_chat/unsloth-qwen3.5-9b-aider:q8_0
+chat-language: ja
+set-env:
+  - OLLAMA_API_BASE=http://mac-mini-2:11434

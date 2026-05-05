@@ -1,4 +1,5 @@
 language = ja
+term = xterm-256color
 
 # ── Font ──────────────────────────────────────────────────
 font-family = "Zed Mono"

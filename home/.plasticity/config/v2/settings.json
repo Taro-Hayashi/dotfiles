@@ -1,0 +1,21 @@
+{
+    Viewport: {
+        ao: {
+            shaderMode: true,
+        },
+    },
+    Internationalization: {
+        locale: 'ja',
+    },
+    Backup: {
+        path: '/Volumes/Primary/Cache/Plasticity',
+        maxRecentVersions: 1,
+        maxHourlyVersions: 1,
+        maxDailyVersions: 1,
+        maxWeeklyVersions: 0,
+        autoSaveMinutes: 10,
+    },
+    Unit: {
+        length: 'millimeter',
+    },
+}

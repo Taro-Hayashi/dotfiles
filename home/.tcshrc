@@ -1,0 +1,6 @@
+source "$HOME/.cargo/env.tcsh"
+
+# Added by LM Studio CLI (lms)
+setenv PATH "$PATH:/Users/hayashi/.lmstudio/bin"
+# End of LM Studio CLI section
+

@@ -3,6 +3,7 @@ CLAUDE.md
 
 # macOS
 .DS_Store
+**/.DS_Store
 
 # Zed - ユーザーデータ (設定以外)
 config/zed/conversations/
@@ -14,3 +15,8 @@ config/zed/CLAUDE.md
 # 機密情報
 *.env
 .env.*
+config/gh/hosts.yml
+home/.claude.json
+home/.claude.json.backup
+home/.plasticity/license.key
+home/.plasticity/license.lic
